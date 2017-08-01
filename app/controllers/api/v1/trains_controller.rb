@@ -1,6 +1,6 @@
 class Api::V1::TrainsController < ApiController
   def index
-    @trains = Train.all
+    @trains = Train.paginate(:page => params[:page])
     render :json => {
       :data => @trains.map{|train|
        { :number => train.number,
@@ -12,11 +12,5 @@ class Api::V1::TrainsController < ApiController
 
   def show
     @train = Train.find_by_number!(params[:train_number])
-
-    render :json => {
-      :number => @train.number,
-      :available_seats => @train.available_seats
-
-    }
   end
 end
