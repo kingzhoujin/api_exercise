@@ -24,5 +24,4 @@
      :created_at => current_user.created_at
    }
  end
-
-  end
+end
